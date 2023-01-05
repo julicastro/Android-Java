@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/textViewMain"
+        android:layout_width="99dp"
+        android:layout_height="39dp"
+        android:rotationX="-6"
+        android:text=""
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="424dp"
+        tools:textSize="24sp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonSecondActivity"
+        android:layout_width="417dp"
+        android:layout_height="98dp"
+        android:text="Go to third activity"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="962dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
