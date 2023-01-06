@@ -41,14 +41,20 @@ public class ThirdActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String phoneNumber = editTextPhone.getText().toString();
-                if (phoneNumber != null) {
+                if (phoneNumber != null && !phoneNumber.isEmpty()) {
                     // COMPROBAR VERSION ACTUAL DE ANDROID USADA
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
+                        // es async x lo q no devuelve result instantaneo.
+                        // llama al onRequestPermissionsResult
                     } else {
                         OlderVersions(phoneNumber);
                     }
+                } else {
+                    Toast.makeText(ThirdActivity.this, "No hay numero de tel", Toast.LENGTH_SHORT).show();
                 }
+
+                // else -> ya lo valida la app del telefono
             }
 
             private void OlderVersions(String phoneNumber) {
@@ -59,7 +65,6 @@ public class ThirdActivity extends AppCompatActivity {
                     Toast.makeText(ThirdActivity.this, "You decline the access", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
     }
 
