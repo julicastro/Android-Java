@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,9 +19,9 @@ import android.widget.Toast;
 public class ThirdActivity extends AppCompatActivity {
 
     private EditText editTextPhone;
-    private EditText editTextTextPersonName;
+    private EditText editTextTextWeb;
     private ImageButton imageButtonPhone;
-    private ImageButton imageButtonName;
+    private ImageButton imageButtonWeb;
     private ImageButton imageButtonCamara;
     private final int PHONE_CALL_CODE = 100;
 
@@ -29,14 +30,15 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        editTextTextPersonName = (EditText) findViewById(R.id.editTextTextPersonName);
+        editTextTextWeb = (EditText) findViewById(R.id.editTextTextPersonName);
         imageButtonPhone = (ImageButton) findViewById(R.id.imageButtonPhone);
-        imageButtonName = (ImageButton) findViewById(R.id.imageButtonName);
+        imageButtonWeb = (ImageButton) findViewById(R.id.imageButtonName);
         imageButtonCamara = (ImageButton) findViewById(R.id.imageButtonCamara);
 
         // cuando toque el boton del telefono q pase algo
         // INTENT IMPLICITO
 
+        // botón para llamadas
         imageButtonPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +46,32 @@ public class ThirdActivity extends AppCompatActivity {
                 if (phoneNumber != null && !phoneNumber.isEmpty()) {
                     // COMPROBAR VERSION ACTUAL DE ANDROID USADA
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
+                        // comprobar si aceptó, no o nunca se le preguntó
+                        if (CheckPerrmission((Manifest.permission.CALL_PHONE))) {
+                            // ACEPTÓ
+                            Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + phoneNumber));
+                            if (ActivityCompat.checkSelfPermission(ThirdActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) return;
+                            startActivity(i);
+                        } else {
+                            // DENEGÓ O NO ACEPTÓ O PRIMERA VEZ Q SE LE PREGUNTA
+                            if (!shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE)) {
+                                // no se le ha preguntado aun
+                                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
+                            } else {
+                                // Ha denegado
+                                Toast.makeText(ThirdActivity.this, "Please enable permission", Toast.LENGTH_SHORT).show();
+                                // en intent podemos ir a ciertas ventanas
+                                Intent i = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                i.addCategory(Intent.CATEGORY_DEFAULT);
+                                i.setData(Uri.parse("package:" + getPackageName()));
+                                // no se vuelve a la app anterior sino a la mimma
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                startActivity(i);
+                            }
+                        }
+                        //requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PHONE_CALL_CODE);
                         // es async x lo q no devuelve result instantaneo.
                         // llama al onRequestPermissionsResult
                     } else {
@@ -66,6 +93,23 @@ public class ThirdActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // boton para la web
+        imageButtonWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = editTextTextWeb.getText().toString();
+                if(url != null && !url.isEmpty()){
+                    Intent intentWeb = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"+url));
+                    // intentWeb.setAction (Intent.ACTION_VIEW)
+                    // intentWeb.setData (Uri.parse("http://"+url))
+
+
+                    startActivity(intentWeb);
+                }
+            }
+        });
+
     }
 
     // sobreescribimos metodo para respuesta de permiso
@@ -96,11 +140,7 @@ public class ThirdActivity extends AppCompatActivity {
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-
         }
-
-
     }
 
     private boolean CheckPerrmission(String permission) {
