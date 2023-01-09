@@ -17,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // forzar y cargar icon en action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher_round);
+
+
         btn = (Button) findViewById(R.id.buttonMain);
         /* implements View.OnClickListener -> btn.setOnClickListener(this); // this -> el q se implementa en la clase (solo en caseo de tener 1 listener) */
         /* R: clase donde se guardan todas las referencias de todo */
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "crear nueva vista", Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "crear nueva vista", Toast.LENGTH_LONG).show();
                 // acceder a nuevo activity y mandarle un string
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class); // DESDE DONDE ESTAMOS A DONDE VAMOS
                 intent.putExtra("greetter", GREETTER); // clave - valor

@@ -25,17 +25,17 @@ public class SecondActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getString("greetter") != null) {
             String greetter = bundle.getString("greetter");
-            Toast.makeText(SecondActivity.this, greetter, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SecondActivity.this, greetter, Toast.LENGTH_SHORT).show();
             textView.setText(greetter);
         } else {
-            Toast.makeText(SecondActivity.this, "El parametro vino null desde la otra vista xd", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SecondActivity.this, "El parametro vino null desde la otra vista xd", Toast.LENGTH_SHORT).show();
         }
 
         btn = (Button) findViewById(R.id.buttonSecondActivity);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SecondActivity.this, "crear tercer activity", Toast.LENGTH_LONG).show();
+                //.makeText(SecondActivity.this, "crear tercer activity", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(SecondActivity.this, ThirdActivity.class); // DESDE DONDE ESTAMOS A DONDE VAMOS
                 startActivity(intent);
             }

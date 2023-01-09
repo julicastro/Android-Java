@@ -1,6 +1,7 @@
 package demo.android.design;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -24,6 +25,7 @@ public class ThirdActivity extends AppCompatActivity {
     private ImageButton imageButtonWeb;
     private ImageButton imageButtonCamara;
     private final int PHONE_CALL_CODE = 100;
+    private final int PICTURE_FROM_CAMARA = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +106,54 @@ public class ThirdActivity extends AppCompatActivity {
                     // intentWeb.setAction (Intent.ACTION_VIEW)
                     // intentWeb.setData (Uri.parse("http://"+url))
 
+                    // CONTACTOS
+                    Intent intentContact = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people"));
 
-                    startActivity(intentWeb);
+                    // EMAIL RAPIDO
+                    String email = "castroejulian@gmail.com";
+                    Intent intentMail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+email));
+
+                    // MAIL COMPLETO
+                    Intent iMailCompleto = new Intent(Intent.ACTION_VIEW, Uri.parse(email));
+                    iMailCompleto.setType("message/rfc822");
+                    // iMailCompleto.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+                    iMailCompleto.putExtra(Intent.EXTRA_SUBJECT, "Mail's title:");
+                    iMailCompleto.putExtra(Intent.EXTRA_TEXT, "HI MY NAME IS JULIAN");
+                    iMailCompleto.putExtra(Intent.EXTRA_EMAIL, new String[]{"juli@mail", "hola@mail"});
+                    startActivity(Intent.createChooser(iMailCompleto, "Elige cliente del correo"));
+                    // TELEFONO 2 sin permiosos
+                    Intent iPhone = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:32132654"));
+                    //startActivity(intentWeb);
                 }
             }
         });
 
+        // boton para la camara
+        imageButtonCamara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentCamara = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivityForResult(intentCamara, PICTURE_FROM_CAMARA);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case PICTURE_FROM_CAMARA:
+                if (requestCode == RESULT_OK) {
+                    String result = data.toUri(0);
+                    Toast.makeText(this, "Result: " + result, Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(this, "There was an error with the picture. Please try again", Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+
+        }
     }
 
     // sobreescribimos metodo para respuesta de permiso
