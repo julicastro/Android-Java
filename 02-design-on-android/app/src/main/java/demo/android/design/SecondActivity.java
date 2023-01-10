@@ -19,6 +19,9 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        // actrivar fecha ir atras
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         textView = findViewById(R.id.textViewMain);
 
         // Tomar los datos del Intent del otro activity. Vienen en forma de Bundle (es una caja q contiene eso)
