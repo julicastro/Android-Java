@@ -10,7 +10,7 @@
         android:id="@+id/buttonMainActivity"
         android:layout_width="414dp"
         android:layout_height="75dp"
-        android:text="Button"
+        android:text="Next"
         android:background="@color/material_dynamic_neutral30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
