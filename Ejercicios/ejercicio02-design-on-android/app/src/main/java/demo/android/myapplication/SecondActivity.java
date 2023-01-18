@@ -22,7 +22,7 @@ public class SecondActivity extends AppCompatActivity {
     private RadioButton radioButton;
     private RadioButton radioButton2;
     private TextView textView;
-    private Integer edad;
+    private Integer edad = 0;
     private String mensajeAEnviar = "";
 
     @Override
@@ -35,7 +35,6 @@ public class SecondActivity extends AppCompatActivity {
         if (bundle != null && bundle.getString("greetter") != null) {
             String greetter = bundle.getString("greetter");
             Toast.makeText(SecondActivity.this, greetter, Toast.LENGTH_SHORT).show();
-            textView.setText(greetter);
         } else {
             Toast.makeText(SecondActivity.this, "El parametro vino null desde la otra vista xd", Toast.LENGTH_SHORT).show();
         }
@@ -71,20 +70,21 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edad >= 18 && edad <= 60) {
-                    if (radioButton.isSelected() || radioButton2.isSelected()) {
-                        if (radioButton.isSelected()) {
+                if (edad >= 18 && edad <= 60 && edad != null) {
+                    if (radioButton.isChecked() || radioButton2.isChecked()) {
+                        if (radioButton.isChecked()) {
                             mensajeAEnviar = "Hola";
-                        } else if (radioButton2.isSelected()) {
+                        } else if (radioButton2.isChecked()) {
                             mensajeAEnviar = "Chau";
                         }
                         Intent intent = new Intent(SecondActivity.this, ThirdActivity.class); // DESDE DONDE ESTAMOS A DONDE VAMOS
                         intent.putExtra("edad", mensajeAEnviar + ". Tu edad es: " + edad); // clave - valor
                         startActivity(intent);
+                    } else {
+                        Toast.makeText(SecondActivity.this, "Elija un radiobuton", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(SecondActivity.this, "Edad Incorrecta", Toast.LENGTH_SHORT).show();

@@ -57,7 +57,7 @@
         android:id="@+id/textViewSecActivity"
         android:layout_width="99dp"
         android:layout_height="33dp"
-        android:text="TextView"
+        android:text=""
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
