@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,11 +29,19 @@ public class MainActivity extends AppCompatActivity {
         names.add("Emanuel");
         names.add("Castro");
         names.add("Messi");
+        names.add("Julian");
+        names.add("Emanuel");
+        names.add("Castro");
+        names.add("Messi");
+        names.add("Julian");
+        names.add("Emanuel");
+        names.add("Castro");
+        names.add("Messi");
 
         // le decimos como queremos q muestre esos datos. se le pasa un layout
-        ArrayAdapter <String>adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
 
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -40,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+        // enlazamos con nuestro adaptador
+        MyAdapter myAdapter = new MyAdapter(this, R.layout.list_items, names);
+        listView.setAdapter(myAdapter);
 
+    }
     /*
         ListView. Lista de vistas q puede ser un boton, boton y textview, etc.
         Todos los twits x ejemplo son un ListView q tiene texto y botones de like, etc.
-
     */
 
+
+
 }
+
