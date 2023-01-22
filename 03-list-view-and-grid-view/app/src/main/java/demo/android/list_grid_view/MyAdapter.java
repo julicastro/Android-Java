@@ -43,7 +43,7 @@ public class MyAdapter extends BaseAdapter {
         ViewHolder holder;
         if(convertView == null){
             LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-            convertView = layoutInflater.inflate(R.layout.list_items, null);
+            convertView = layoutInflater.inflate(this.layout, null);
             holder = new ViewHolder();
             holder.nameTextView = (TextView) convertView.findViewById(R.id.editTextTextPersonName);
             convertView.setTag(holder);
