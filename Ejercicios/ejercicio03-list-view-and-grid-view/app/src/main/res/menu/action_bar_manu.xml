@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/addItem"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Add Item"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/listViewLayout"
+        android:icon="@android:drawable/arrow_down_float"
+        android:title="Change to List View"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/gridViewLayout"
+        android:icon="@android:drawable/arrow_up_float"
+        android:title="Change to Grid View"
+        app:showAsAction="ifRoom" />
+
+
+
+</menu>
