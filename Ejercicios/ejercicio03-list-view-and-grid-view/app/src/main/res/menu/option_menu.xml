@@ -6,20 +6,23 @@
         android:id="@+id/addItem"
         android:icon="@android:drawable/ic_menu_add"
         android:title="Add Item"
+        android:orderInCategory="1"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/listViewLayout"
         android:icon="@android:drawable/arrow_down_float"
         android:title="Change to List View"
+        android:visible="false"
+        android:orderInCategory="2"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/gridViewLayout"
         android:icon="@android:drawable/arrow_up_float"
         android:title="Change to Grid View"
+        android:orderInCategory="2"
         app:showAsAction="ifRoom" />
-
 
 
 </menu>

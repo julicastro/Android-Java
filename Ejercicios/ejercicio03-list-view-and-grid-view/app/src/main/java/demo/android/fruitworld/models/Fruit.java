@@ -3,10 +3,13 @@ package demo.android.fruitworld.models;
 public class Fruit {
 
     private String name;
+    private int image;
     private String origen;
-    private Integer image;
 
-    public Fruit(String name, String origen, Integer image) {
+
+    public Fruit() {}
+
+    public Fruit(String name, int image, String origen) {
         this.name = name;
         this.origen = origen;
         this.image = image;
