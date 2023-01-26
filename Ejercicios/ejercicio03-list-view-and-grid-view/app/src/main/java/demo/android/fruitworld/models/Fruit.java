@@ -3,16 +3,15 @@ package demo.android.fruitworld.models;
 public class Fruit {
 
     private String name;
-    private int image;
-    private String origen;
-
+    private int icon;
+    private String origin;
 
     public Fruit() {}
 
-    public Fruit(String name, int image, String origen) {
+    public Fruit(String name, int icon, String origin) {
         this.name = name;
-        this.origen = origen;
-        this.image = image;
+        this.icon = icon;
+        this.origin = origin;
     }
 
     public String getName() {
@@ -23,19 +22,19 @@ public class Fruit {
         this.name = name;
     }
 
-    public String getOrigen() {
-        return origen;
+    public int getIcon() {
+        return icon;
     }
 
-    public void setOrigen(String origen) {
-        this.origen = origen;
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 
-    public Integer getImage() {
-        return image;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setImage(Integer image) {
-        this.image = image;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 }

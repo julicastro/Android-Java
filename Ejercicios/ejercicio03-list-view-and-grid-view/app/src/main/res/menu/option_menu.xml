@@ -2,27 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-        android:id="@+id/addItem"
-        android:icon="@android:drawable/ic_menu_add"
-        android:title="Add Item"
+        android:id="@+id/add_fruit"
+        android:icon="@drawable/ic_add_fruit"
         android:orderInCategory="1"
+        android:title="Add Fruit"
         app:showAsAction="ifRoom" />
 
+
     <item
-        android:id="@+id/listViewLayout"
-        android:icon="@android:drawable/arrow_down_float"
-        android:title="Change to List View"
+        android:id="@+id/list_view"
+        android:icon="@drawable/ic_list"
+        android:orderInCategory="2"
         android:visible="false"
-        android:orderInCategory="2"
+        android:title="List"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/gridViewLayout"
-        android:icon="@android:drawable/arrow_up_float"
-        android:title="Change to Grid View"
+        android:id="@+id/grid_view"
+        android:icon="@drawable/ic_grid"
         android:orderInCategory="2"
+        android:title="Grid"
         app:showAsAction="ifRoom" />
-
 
 </menu>
