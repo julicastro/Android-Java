@@ -1,4 +1,4 @@
-package com.jumpdontdie;
+package com.jumpdontdie.procesors;
 
 import com.badlogic.gdx.InputProcessor;
 
