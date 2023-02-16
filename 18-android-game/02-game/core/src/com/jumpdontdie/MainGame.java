@@ -1,24 +1,15 @@
 package com.jumpdontdie;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.jumpdontdie.screen.screens.MainGameScreen;
-
-import org.w3c.dom.Text;
+import com.jumpdontdie.screens.Box2DScreen;
+import com.jumpdontdie.screens.MainGameScreen;
 
 public class MainGame extends Game {
     // game extends de appAdapter
 
     @Override
     public void create() {
-        setScreen(new MainGameScreen(this));
+        setScreen(new Box2DScreen(this));
     }
 
 

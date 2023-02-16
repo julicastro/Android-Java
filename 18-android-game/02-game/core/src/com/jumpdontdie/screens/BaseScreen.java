@@ -1,4 +1,4 @@
-package com.jumpdontdie.screen;
+package com.jumpdontdie.screens;
 
 import com.badlogic.gdx.Screen;
 import com.jumpdontdie.MainGame;
