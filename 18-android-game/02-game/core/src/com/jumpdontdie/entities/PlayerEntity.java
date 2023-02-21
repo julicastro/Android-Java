@@ -77,7 +77,7 @@ public class PlayerEntity extends Actor {
     }
 
     public void jump() {
-        if (!jumping && alive) {
+        if (!jumping && alive) { // && alive
             jumping = true;
             Vector2 position = body.getPosition();
             body.applyLinearImpulse(0, IMPULSE_JUMP, position.x, position.y, true);
@@ -89,28 +89,20 @@ public class PlayerEntity extends Actor {
         world.destroyBody(body);
     }
 
-    public boolean isAlive() {
-        return alive;
-    }
-
     public void setAlive(boolean alive) {
         this.alive = alive;
-    }
-
-    public boolean isJumping() {
-        return jumping;
     }
 
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
     }
 
-    public boolean isMustJump() {
-        return mustJump;
-    }
-
     public void setMustJump(boolean mustJump) {
         this.mustJump = mustJump;
+    }
+
+    public boolean isAlive() {
+        return alive;
     }
 
     /*
